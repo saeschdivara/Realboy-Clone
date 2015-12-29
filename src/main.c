@@ -39,6 +39,7 @@ Options:\n\
   -D, --DMG\t\t\tForce Game Boy Mode\n\
   -C, --CGB\t\t\tForce Color Game Boy Mode\n\
   -S, --SGB\t\t\tForce Super Game Boy Mode\n\
+  -k, --keys\t\t\tPrints all key bindings\n\
 ");
 }
 
@@ -57,7 +58,7 @@ main(int argc, char *argv[])
 	/* Parse arguments. */
 	int op;
 	do {
-		op = getopt_long(argc, argv, "r:1234fhdbvDCS", options, NULL);
+        op = getopt_long(argc, argv, "r:1234fhdbvDCSk", options, NULL);
 		int arg;
 		switch (op) {
 			/* Video */
@@ -119,6 +120,14 @@ main(int argc, char *argv[])
 				ignore_conf(GB_MODE);
 				gboy_hw=SGB;
 				break;
+            case 'k':
+                printf("Keys [GBC key] = [Keyboard key]:\n\
+                       A = d\n\
+                       B = s\n\
+                       START = ENTER\n\
+                       SELECT = a\n\
+                ");
+                break;
 			default:
 				break;
 

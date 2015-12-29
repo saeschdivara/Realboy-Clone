@@ -46,5 +46,6 @@ struct option options[] = {
 	{ "DMG", no_argument, 0, 'D' },
 	{ "CGB", no_argument, 0, 'C' },
 	{ "SGB", no_argument, 0, 'S' },
+    { "keys", no_argument, 0, 'k' },
 	{ NULL, no_argument, 0, 0 }
 };
