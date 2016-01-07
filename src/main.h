@@ -24,7 +24,7 @@ extern int gbddb;
 extern Uint32 scale;
 extern Uint32 fullscreen;
 extern int frames_per_second;
-extern int start_vm();
+extern int start_vm(int is_soundsystem_muted);
 extern void vid_scale(int);
 extern void set_fps(int);
 extern void ignore_conf(long);
@@ -47,5 +47,6 @@ struct option options[] = {
 	{ "CGB", no_argument, 0, 'C' },
 	{ "SGB", no_argument, 0, 'S' },
     { "keys", no_argument, 0, 'k' },
+    { "muted", no_argument, 0, 'm' },
 	{ NULL, no_argument, 0, 0 }
 };

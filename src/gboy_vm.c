@@ -394,7 +394,7 @@ alloc_addr_sp()
  * Start Virtual Machine.
  */
 int
-start_vm()
+start_vm(int is_soundsystem_muted)
 {
 	/* Read cartridge's header */
 	fread(cart_init_rd, 1, CART_HDR, rom_file);
@@ -427,8 +427,12 @@ start_vm()
 		fread(gb_cart.cart_rom_banks, 1, 0x8000<<gb_cart.cart_rom_size, rom_file);
 		/* Initialize the video subsystem */
 		vid_start();
-		/* Initialize the sound subsystem */
-		snd_start();
+
+        if ( !is_soundsystem_muted ) {
+            /* Initialize the sound subsystem */
+            snd_start();
+        }
+
 		//gb_hw_reset();
 		/* Load boot rom */
 		if (use_boot_rom) {

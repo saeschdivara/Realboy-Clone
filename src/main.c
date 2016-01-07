@@ -40,6 +40,7 @@ Options:\n\
   -C, --CGB\t\t\tForce Color Game Boy Mode\n\
   -S, --SGB\t\t\tForce Super Game Boy Mode\n\
   -k, --keys\t\t\tPrints all key bindings\n\
+  -m, --muted\t\t\tForces the sound system not to play any sound\n\
 ");
 }
 
@@ -56,9 +57,10 @@ main(int argc, char *argv[])
 	}
 
 	/* Parse arguments. */
+    int is_sound_muted = 0;
 	int op;
 	do {
-        op = getopt_long(argc, argv, "r:1234fhdbvDCSk", options, NULL);
+        op = getopt_long(argc, argv, "r:1234fhdbvDCSkm", options, NULL);
 		int arg;
 		switch (op) {
 			/* Video */
@@ -119,7 +121,7 @@ main(int argc, char *argv[])
 			case 'S':
 				ignore_conf(GB_MODE);
 				gboy_hw=SGB;
-				break;
+                break;
             case 'k':
                 printf("Keys [GBC key] = [Keyboard key]:\n\
                        A = d\n\
@@ -127,6 +129,9 @@ main(int argc, char *argv[])
                        START = ENTER\n\
                        SELECT = a\n\
                 ");
+                break;
+            case 'm':
+                is_sound_muted = 1;
                 break;
 			default:
 				break;
@@ -145,7 +150,7 @@ main(int argc, char *argv[])
 		init_conf();
 		int ret_val; // value returned from emulation
 		/* Start Virtual Machine */
-		ret_val=start_vm();
+        ret_val=start_vm(is_sound_muted);
 		/* Error returned if file not valid */
 		if (ret_val == -1)
 			printf("File not a gb binary\n\n");
