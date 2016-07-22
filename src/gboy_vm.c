@@ -224,7 +224,7 @@ parse_cart_hdr()
 	int i, j;
 
 	/* Copy name XXX limit ourselves to 11 characters; this restriction apparently came with the CGB */
-	for (i=0; i<16; i++)
+    for (i=0; i<12; i++)
 		gb_cart.cart_name[i] = (cart_init_rd+GAM_TIT)[i];
 
 	printf("\nCartridge \"%s\":\n", gb_cart.cart_name);
